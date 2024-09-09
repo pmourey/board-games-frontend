@@ -3,7 +3,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // const backendFlask = 'https://philrg.pythonanywhere.com/';
 // const backendFlask = 'http://philippe.mourey.com:50001';
-const backendFlask = 'http://192.168.1.10:5000';
+// const backendFlask = 'http://192.168.1.10:5000';
+const backendFlask = 'http://localhost:5000';
 
 module.exports = function(app) {
     app.use(

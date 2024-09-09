@@ -29,6 +29,7 @@ const GameSection = ({gameName, path}) => {
                 />
                 <label htmlFor={`${gameName}-onePlayer`}>1 Player</label>
                 <input
+                    hidden disabled
                     type="radio"
                     id={`${gameName}-twoPlayers`}
                     name={`${gameName}-numPlayers`}
@@ -36,7 +37,11 @@ const GameSection = ({gameName, path}) => {
                     checked={numPlayers === 2}
                     onChange={handlePlayerChange}
                 />
-                <label htmlFor={`${gameName}-twoPlayers`}>2 Players</label>
+                <label 
+                    hidden
+                    htmlFor={`${gameName}-twoPlayers`} 
+                    style={{ textDecoration: 'line-through' }}
+                > 2 Players </label>
             </div>
         </div>
     );
@@ -48,6 +53,7 @@ const Home = () => {
             <h1>Welcome to the Games Page</h1>
             <GameSection gameName="Tic Tac Toe" path="/tic-tac-toe"/>
             <GameSection gameName="Connect 4" path="/connect-c4"/>
+            <GameSection gameName="Checkers" path="/checkers"/>
         </div>
     );
 };

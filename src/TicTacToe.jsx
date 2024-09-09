@@ -1,7 +1,8 @@
 // TicTacToe.js
 import React, { useState } from 'react';
 import './App.css';
-import Board from './components/Board_TTT';
+import Board from './components/Board';
+import Player from './Player';
 import {Link} from "react-router-dom";
 import {withRouter} from './functions';
 
@@ -10,6 +11,8 @@ class TicTacToe extends React.Component {
         super(props);
         // this.new_game();
         const { numPlayers } = this.props.router.params;
+        this.rows = 3;
+        this.cols = 3;
         this.state = {
             squares: Array(9).fill(null),
             xIsNext: true,
@@ -17,6 +20,10 @@ class TicTacToe extends React.Component {
             status: "Player X starts",
             numPlayers: numPlayers
         };
+        console.log(this.player1);
+        console.log(this.player2);
+        console.log(this.state);
+        this.new_game();
         // Saving state to localStorage (web) or AsyncStorage (React Native)
         // localStorage.setItem('boardState', JSON.stringify(this.state));
 
@@ -93,16 +100,18 @@ class TicTacToe extends React.Component {
 
         return (
             <div className="app">
-                <h1>Connect 4</h1>
+                <h1>Tic Tac Toe</h1>
                 <div className="status">{this.state.status}</div>
                 <Board
+                    rows={this.rows}
+                    cols={this.cols}
                     squares={this.state.squares}
                     onClick={(i) => this.handleMove(i)}
                 />
                 {/* Autres composants ou éléments de votre application */}
                 {this.state.gameOver && <button onClick={() => this.new_game()}>New Game</button>}
                 <Link to="/">
-                    <button>Home</button>
+                    <button>Leave Game</button>
                 </Link>
             </div>
         );

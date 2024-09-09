@@ -1,22 +1,33 @@
 // App.js
 import React, {useState} from 'react';
 import './App.css';
-import Board from './components/Board_C4';
+import Board from './components/Board';
+import Player from './Player';
 import {Link} from "react-router-dom";
 import {withRouter} from './functions';
+
 
 class Connect4 extends React.Component {
     constructor(props) {
         super(props);
         // this.new_game();
         const { numPlayers } = this.props.router.params;
+        this.rows = 6
+        this.cols = 7
+        const size = this.rows * this.cols;
+        this.player1 = new Player('Human', 'X');
+        this.player2 = new Player('Computer', 'O');
         this.state = {
-            squares: Array(42).fill(null),
-            xIsNext: true,
+            squares: Array(size).fill(null),
+            nextPlayer: this.player2,
             gameOver: false,
-            status: "Player X starts",
+            status: "Player " + this.player1.color + " starts",
             numPlayers: numPlayers
         };
+        console.log(this.player1);
+        console.log(this.player2);
+        console.log(this.state);
+        this.new_game();
         // Saving state to localStorage (web) or AsyncStorage (React Native)
         // localStorage.setItem('boardState', JSON.stringify(this.state));
     }
@@ -72,8 +83,8 @@ class Connect4 extends React.Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                column: i % 7,
-                player: this.state.xIsNext ? 'X' : 'O'
+                column: i % this.cols,
+                player: this.state.player === this.player1 ? this.player2: this.player1,
                 // Autres données à envoyer au backend si nécessaire
             }),
         })
@@ -105,13 +116,15 @@ class Connect4 extends React.Component {
                 <h1>Connect 4 ({this.state.numPlayers} players)</h1>
                 <div className="status">{this.state.status}</div>
                 <Board
+                    rows={this.rows}
+                    cols={this.cols}
                     squares={this.state.squares}
                     onClick={(i) => this.handleMove(i)}
                 />
                 {/* Autres composants ou éléments de votre application */}
                 {this.state.gameOver && <button onClick={() => this.new_game()}>New Game</button>}
                 <Link to="/">
-                    <button>Home</button>
+                    <button>Leave Game</button>
                 </Link>
             </div>
         );
