@@ -54,6 +54,7 @@ const Home = () => {
             <GameSection gameName="Tic Tac Toe" path="/tic-tac-toe"/>
             <GameSection gameName="Connect 4" path="/connect-c4"/>
             <GameSection gameName="Checkers" path="/checkers"/>
+            <p>&copy; 2024 Philippe Mourey. Tous droits réservés. (<a href="https://github.com/pmourey/jobs">lien projet</a>)</p>
         </div>
     );
 };
