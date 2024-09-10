@@ -3,7 +3,7 @@
 #### Front-end: React JS (for the game)
 #### [Back-end: Flask (to manage game state)](https://github.com/pmourey/tic-tac-toe-backend)
 
-Endpoint accessible here: https://philippe.mourey.com:60000
+Endpoint accessible here: http://philippe.mourey.com:60000
 
 - Todos:
   - [x] Implement game with one player
